@@ -1,12 +1,9 @@
-*dependency-reduced-pom*
-# Maven
+#Maven
 target/
 pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.versionsBackup
-pom.xml.next
 release.properties
-dependency-reduced-pom.xml
 
 # Eclipse
 .project
@@ -14,31 +11,29 @@ dependency-reduced-pom.xml
 .settings/
 bin/
 
-# IDEA
+# IntelliJ
 .idea
 *.ipr
 *.iml
 *.iws
 
-# IDEA lsp plugin
-lsp/
-
 # NetBeans
 nb-configuration.xml
 
-# KDE
-.directory
+# Visual Studio Code
+.vscode
+.factorypath
 
 # OSX
 .DS_Store
 
-# VS CODE
-.vscode
-*.code-workspace
-.factorypath
-
-# Vi/Vim
+# Vim
 *.swp
+*.swo
 
-# Quarkus
-quarkus.log*
+# patch
+*.orig
+*.rej
+
+# Local environment
+.env

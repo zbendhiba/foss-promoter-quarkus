@@ -94,12 +94,13 @@ services:
       dockerfile: src/main/docker/Dockerfile.jvm
       context: fp-repo-service-quarkus
     volumes:
-      - repo-storage:/data
+      - repo-storage:/deployments/data
     depends_on:
       - kafka
       - fp-commit-service
     environment:
-      KAFKA_HOST: kafka
+      CAMEL_COMPONENT_KAFKA_BROKERS: kafka:9092
+      DATA_DIR: /deployments/data
   fp-web:
     build:
       dockerfile: src/main/docker/Dockerfile.jvm

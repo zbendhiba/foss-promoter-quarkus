@@ -1,14 +1,14 @@
 package org.foss.promoter.quarkus.web.routes;
 
-import javax.inject.Inject;
-
 import com.fasterxml.jackson.core.JacksonException;
 import org.apache.camel.Exchange;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.model.rest.RestBindingMode;
 import org.foss.promoter.common.data.Repository;
+import org.jboss.logging.Logger;
 
 public class RepositoryRoute extends RouteBuilder {
+    private static final Logger LOG = Logger.getLogger(RepositoryRoute.class);
 
     private void processRepository(Exchange exchange) {
         Repository body = exchange.getMessage().getBody(Repository.class);
@@ -25,8 +25,7 @@ public class RepositoryRoute extends RouteBuilder {
         exchange.getMessage().setHeader("valid", true);
 
         if (body instanceof Repository) {
-            // TODO: convert logging
-//            LOG.debug("Received -> repository {}", body);
+            LOG.infof("Received repository %s for processing", body.getName());
         }
 
         exchange.getMessage().setBody(body.getName());

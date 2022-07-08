@@ -3,6 +3,7 @@ package org.foss.promoter.quarkus.repo.routes;
 import java.io.File;
 
 //import io.micrometer.core.instrument.MeterRegistry;
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
 import org.apache.camel.Exchange;
@@ -17,11 +18,14 @@ import org.eclipse.jgit.revwalk.RevWalk;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.jboss.logging.Logger;
 
+@ApplicationScoped
 public class ProcessRepositoryRoute extends RouteBuilder {
     private static final org.jboss.logging.Logger LOG = Logger.getLogger(ProcessRepositoryRoute.class);
 
     @ConfigProperty(name = "data.dir")
     String dataDir;
+
+    @Inject
     private ProducerTemplate producerTemplate;
 
     private void process(Exchange exchange) {
@@ -64,8 +68,6 @@ public class ProcessRepositoryRoute extends RouteBuilder {
 
     @Override
     public void configure() {
-        producerTemplate = getContext().createProducerTemplate();
-
         // TODO: remove from here
 //        MeterRegistry registry = PrometheusRegistryUtil.ppgetMetricRegistry();
 //

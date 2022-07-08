@@ -2,18 +2,13 @@ package org.foss.promoter.quarkus.web.routes;
 
 import javax.inject.Inject;
 
+import com.fasterxml.jackson.core.JacksonException;
 import org.apache.camel.Exchange;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.model.rest.RestBindingMode;
 import org.foss.promoter.common.data.Repository;
 
 public class RepositoryRoute extends RouteBuilder {
-
-//    @Inject
-//    private String bootstrapHost;
-//
-//    @Inject
-//    int bootstrapPort;
 
     private void processRepository(Exchange exchange) {
         Repository body = exchange.getMessage().getBody(Repository.class);
@@ -49,13 +44,12 @@ public class RepositoryRoute extends RouteBuilder {
         getContext().addRoutePolicyFactory(new MicrometerRoutePolicyFactory());
         */
 
-        // TODO: convert exception handling for Camel Quarkus
-//        onException(JacksonException.class)
-//                .routeId("web-invalid-json")
-//                .handled(true)
-//                .setHeader(Exchange.HTTP_RESPONSE_CODE, constant(400))
-//                .setHeader(Exchange.CONTENT_TYPE, constant("text/plain"))
-//                .setBody().constant("Invalid json data");
+        onException(JacksonException.class)
+                .routeId("web-invalid-json")
+                .handled(true)
+                .setHeader(Exchange.HTTP_RESPONSE_CODE, constant(400))
+                .setHeader(Exchange.CONTENT_TYPE, constant("text/plain"))
+                .setBody().constant("Invalid json data");
 
         rest("/api")
                 .get("/hello").to("direct:hello")

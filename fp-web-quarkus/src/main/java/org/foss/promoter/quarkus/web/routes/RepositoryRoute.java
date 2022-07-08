@@ -35,14 +35,6 @@ public class RepositoryRoute extends RouteBuilder {
     public void configure() throws Exception {
         restConfiguration().bindingMode(RestBindingMode.json);
 
-        // TODO: for later
-        /**
-        MeterRegistry registry = PrometheusRegistryUtil.getMetricRegistry();
-
-        getContext().getRegistry().bind(MicrometerConstants.METRICS_REGISTRY_NAME, registry);
-        getContext().addRoutePolicyFactory(new MicrometerRoutePolicyFactory());
-        */
-
         onException(JacksonException.class)
                 .routeId("web-invalid-json")
                 .handled(true)

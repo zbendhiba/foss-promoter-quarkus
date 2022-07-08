@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.Arrays;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.imageio.ImageIO;
 
 import com.google.zxing.BarcodeFormat;
@@ -16,18 +17,23 @@ import com.google.zxing.qrcode.QRCodeWriter;
 import org.apache.camel.Exchange;
 import org.apache.camel.builder.RouteBuilder;
 import org.eclipse.microprofile.config.ConfigProvider;
+import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.foss.promoter.quarkus.commit.common.CassandraClient;
 import org.foss.promoter.quarkus.commit.common.ContributionsDao;
 import org.jboss.logging.Logger;
 
+@ApplicationScoped
 public class CommitRoute extends RouteBuilder {
     private static final Logger LOG = Logger.getLogger(CommitRoute.class);
 
-    private final String cassandraServer = ConfigProvider.getConfig().getValue("cassandra.server", String.class);
+    @ConfigProperty(name="CASSANDRA_SERVER", defaultValue = "cassandra")
+    String cassandraServer;
 
-    private final int cassandraPort = ConfigProvider.getConfig().getValue("cassandra.port", int.class);
+    @ConfigProperty(name="CASSANDRA_PORT", defaultValue = "9042")
+    int cassandraPort;
 
-    private final int imageSize = ConfigProvider.getConfig().getValue("image.size", int.class);
+    @ConfigProperty(name="IMAGE_SIZE", defaultValue = "1024")
+    int imageSize;
 
     private final int consumersCount = ConfigProvider.getConfig().getValue("camel.component.kafka.consumers-count", int.class);
 
@@ -77,7 +83,7 @@ public class CommitRoute extends RouteBuilder {
         fromF("kafka:commits?groupId=fp-commit-service")
                 .routeId("commit-qr")
 // TODO: see the note on consumersCount property
-//                .threads(3)
+                .threads(3)
                 .process(this::process)
                 .toF("cql://%s:%d/%s?cql=%s", cassandraServer, cassandraPort, ContributionsDao.KEY_SPACE,
                         ContributionsDao.getInsertStatement());

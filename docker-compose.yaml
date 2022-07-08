@@ -84,9 +84,10 @@ services:
       - kafka
       - cassandra
     environment:
-      KAFKA_HOST: kafka
-      CASSANDRA_HOST: cassandra
-      KAFKA_CONSUMERS_COUNT: 3
+      CAMEL_COMPONENT_KAFKA_BROKERS: kafka:9092
+#      CASSANDRA_HOST: cassandra
+# TODO: we need to be able to adjust this dynamically
+#      KAFKA_CONSUMERS_COUNT: 3
 # TODO: for later
 #      OTEL_EXPORTER_OTLP_ENDPOINT: http://host:4317
   fp-repo-service:

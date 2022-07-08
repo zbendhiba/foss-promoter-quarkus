@@ -11,8 +11,11 @@
 
 
   <modules>
+    <module>fp-cli</module>
+    <module>fp-common</module>
     <module>fp-repo-service-quarkus</module>
     <module>fp-commit-service-quarkus</module>
     <module>fp-web-quarkus</module>
+
   </modules>
 </project>

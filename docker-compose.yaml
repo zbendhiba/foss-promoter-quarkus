@@ -85,7 +85,6 @@ services:
       - cassandra
     environment:
       CAMEL_COMPONENT_KAFKA_BROKERS: kafka:9092
-#      CASSANDRA_HOST: cassandra
 # TODO: we need to be able to adjust this dynamically
 #      KAFKA_CONSUMERS_COUNT: 3
 # TODO: for later

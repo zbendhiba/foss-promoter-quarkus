@@ -26,7 +26,6 @@ public class RepositoryRoute extends RouteBuilder {
 
     @Override
     public void configure() {
-        producerTemplate = getContext().createProducerTemplate();
         // Handles the request body
         fromF("kafka:repositories")
                 .routeId("repositories")

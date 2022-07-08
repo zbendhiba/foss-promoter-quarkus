@@ -3,6 +3,8 @@ FOSS Promoter demo based on Quarkus
 
 # How to play with this demo. 
 
+## Build
+
 1. Build the code: 
 ```shell
 mvn clean package
@@ -18,6 +20,19 @@ docker-compose build
 ```shell
 docker-compose up -d
 ```
+
+
+## Setup Prometheus and Grafana
+
+1. Add new data source in the Grafana data source configuration: http://localhost:3000/datasources/new.
+2. In the URL field, enter the Prometheus URL: http://prometheus:9090
+
+
+## Setup the Grafana Dashboard
+
+1. Access the Dashboard import page at: http://localhost:3000/dashboard/import 
+2. Upload the the System Overview [dashboard JSON file](./grafana/System%20Overview.json). Select the Prometheus data source created previously.
+
 
 4. Send a Git repository for the system to generate the QR codes for each of the commits in the repository:
 

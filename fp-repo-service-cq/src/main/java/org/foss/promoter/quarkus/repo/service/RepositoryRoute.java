@@ -2,6 +2,7 @@ package org.foss.promoter.quarkus.repo.service;
 
 import java.io.File;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
 import org.apache.camel.Exchange;
@@ -14,6 +15,7 @@ import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+@ApplicationScoped
 public class RepositoryRoute extends RouteBuilder {
 
     private static final Logger LOG = LoggerFactory.getLogger(RepositoryRoute.class);

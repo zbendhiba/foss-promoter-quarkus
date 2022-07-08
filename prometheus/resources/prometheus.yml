@@ -10,22 +10,22 @@ rule_files:
 
 scrape_configs:
   - job_name: fp-repo-service
-    metrics_path: /metrics
+    metrics_path: /q/metrics
     static_configs:
       - targets:
-          - fp-repo-service:8180
+          - fp-repo-service:8080
 
   - job_name: fp-commit-service
-    metrics_path: /metrics
+    metrics_path: /q/metrics
     static_configs:
       - targets:
-          - fp-commit-service:8180
+          - fp-commit-service:8080
 
   - job_name: fp-web
-    metrics_path: /metrics
+    metrics_path: /q/metrics
     static_configs:
       - targets:
-          - fp-web:8180
+          - fp-web:8080
 
 #alerting:
 #  alertmanagers:

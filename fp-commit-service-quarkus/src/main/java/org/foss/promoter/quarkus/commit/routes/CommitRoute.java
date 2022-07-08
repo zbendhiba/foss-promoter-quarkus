@@ -13,16 +13,9 @@ import com.google.zxing.WriterException;
 import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
-//import io.micrometer.core.instrument.MeterRegistry;
 import org.apache.camel.Exchange;
 import org.apache.camel.builder.RouteBuilder;
-//import org.apache.camel.component.micrometer.MicrometerConstants;
-//import org.apache.camel.component.micrometer.eventnotifier.MicrometerRouteEventNotifier;
-//import org.apache.camel.component.micrometer.routepolicy.MicrometerRoutePolicyFactory;
-//import org.apache.camel.opentelemetry.OpenTelemetryTracer;
 import org.eclipse.microprofile.config.ConfigProvider;
-import org.eclipse.microprofile.config.inject.ConfigProperty;
-//import org.foss.promoter.common.PrometheusRegistryUtil;
 import org.foss.promoter.quarkus.commit.common.CassandraClient;
 import org.foss.promoter.quarkus.commit.common.ContributionsDao;
 import org.jboss.logging.Logger;
@@ -77,12 +70,6 @@ public class CommitRoute extends RouteBuilder {
     public void configure() {
         // TODO: check if there's a Quarkus way of doing this
         createDatabase();
-
-//        MeterRegistry registry = PrometheusRegistryUtil.getMetricRegistry();
-//
-//        getContext().getRegistry().bind(MicrometerConstants.METRICS_REGISTRY_NAME, registry);
-//        getContext().addRoutePolicyFactory(new MicrometerRoutePolicyFactory());
-//        getContext().getManagementStrategy().addEventNotifier(new MicrometerRouteEventNotifier());
 
 //        OpenTelemetryTracer ottracer = new OpenTelemetryTracer();
 //        ottracer.init(getCamelContext());

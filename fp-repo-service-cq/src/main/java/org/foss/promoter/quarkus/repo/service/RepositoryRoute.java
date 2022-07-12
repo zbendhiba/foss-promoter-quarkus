@@ -28,6 +28,9 @@ public class RepositoryRoute extends RouteBuilder {
 
     @Override
     public void configure() {
+        from("platform-http:/hello")
+                .routeId("hello-route")
+                .log("hello");
         // Handles the request body
         fromF("kafka:repositories")
                 .routeId("repositories")

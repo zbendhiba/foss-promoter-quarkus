@@ -74,8 +74,8 @@ services:
     volumes:
       - grafana-storage:/var/lib/grafana
     environment:
-      GF_AUTH_ANONYMOUS_ENABLED: true
-      GF_AUTH_ANONYMOUS_ORG_ROLE: Admin
+      GF_AUTH_ANONYMOUS_ENABLED: "true"
+      GF_AUTH_ANONYMOUS_ORG_ROLE: "Admin"
   fp-commit-service:
     build:
       dockerfile: src/main/docker/Dockerfile.jvm

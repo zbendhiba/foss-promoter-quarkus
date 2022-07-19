@@ -17,3 +17,7 @@ data:
         metrics_path: /q/metrics
         static_configs:
           - targets: ['fp-repo-service:80']
+      - job_name: fp-web-quarkus
+        metrics_path: /q/metrics
+        static_configs:
+          - targets: ['fp-web-quarkus:80']
